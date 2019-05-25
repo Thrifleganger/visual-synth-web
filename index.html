@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>Visual Synth</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/nav-panel.css">
+    <link rel="stylesheet" href="css/info.css">
+    <link rel="stylesheet" href="css/mobile-controller.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div id="main-canvas-container"></div>
+    <div id="navbar-side-panel">
+        <div id="navbar-side-panel-content-container">
+            <div id="close-button" class="list-item">&times;</div>
+            <hr>
+            <div class="list-item">
+                <div class="list-item-label">Fullscreen Mode</div>
+                <div>
+                    <input class="tgl tgl-light" id="fullscreen-toggle" type="checkbox"/>
+                    <label class="tgl-btn" for="fullscreen-toggle"></label>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-item-label">Display Waveform</div>
+                <div>
+                    <input class="tgl tgl-light" id="display-waveform-toggle" type="checkbox" checked/>
+                    <label class="tgl-btn" for="display-waveform-toggle"></label>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-item-label">Display Animation</div>
+                <div>
+                    <input class="tgl tgl-light" id="display-animation-toggle" type="checkbox" checked/>
+                    <label class="tgl-btn" for="display-animation-toggle"></label>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-item-label">Show Info</div>
+                <div>
+                    <input class="tgl tgl-light" id="show-info-toggle" type="checkbox" checked/>
+                    <label class="tgl-btn" for="show-info-toggle"></label>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-item-label">Octave Mode</div>
+                <div>
+                    <input class="tgl tgl-light" id="octave-mode-toggle" type="checkbox" checked/>
+                    <label class="tgl-btn" for="octave-mode-toggle"></label>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-item-label">Hide Controls</div>
+                <div>
+                    <input class="tgl tgl-light" id="hide-controls-toggle" type="checkbox"/>
+                    <label class="tgl-btn" for="hide-controls-toggle"></label>
+                </div>
+            </div>
+            <hr>
+            <div class="list-item">
+                <div class="list-item-label">Octave</div>
+                <div id="octave-picker" class="number-picker">
+                    <div class="plus"><b>+</b></div>
+                    <div class="num-box">3</div>
+                    <div class="minus"><b>&ndash;</b></div>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-item-label">Speed</div>
+                <div id="speed-picker" class="number-picker">
+                    <div class="plus"><b>+</b></div>
+                    <div class="num-box">4</div>
+                    <div class="minus"><b>&ndash;</b></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="gradient-background"></div>
+
+    <header>
+        <i id="navbar-trigger" class="material-icons custom-responsive">menu</i>
+        <i id="mute-button-trigger" class="material-icons custom-responsive">volume_up</i>
+    </header>
+
+    <div id="controller-container">
+        <div id="main-controller">
+            <div id="sub-controller-1">
+                <div id="macro-controller" class="widget-container">
+                    <div class="slider-block">
+                        <div class="slider-component">
+                            <input type="text" id="volume-slider" class="rotary-slider">
+                        </div>
+                        <div class="slider-label">Volume</div>
+                    </div>
+                    <div class="slider-block">
+                        <div class="slider-component">
+                            <input type="text" id="pan-slider" class="rotary-slider">
+                        </div>
+                        <div class="slider-label">Pan</div>
+                    </div>
+                    <div class="slider-block">
+                        <div class="slider-component">
+                            <input type="text" id="tone-slider" class="rotary-slider">
+                        </div>
+                        <div class="slider-label">Tone</div>
+                    </div>
+                    <div class="container-label">Global Macros</div>
+                </div>
+                <div id="envelope-controller" class="widget-container">
+                    <div class="slider-block">
+                        <div class="slider-component">
+                            <input type="text" id="attack-slider" class="rotary-slider">
+                        </div>
+                        <div class="slider-label">Attack</div>
+                    </div>
+                    <div class="slider-block">
+                        <div class="slider-component">
+                            <input type="text" id="decay-slider" class="rotary-slider">
+                        </div>
+                        <div class="slider-label">Decay</div>
+                    </div>
+                    <div class="slider-block">
+                        <div class="slider-component">
+                            <input type="text" id="sustain-slider" class="rotary-slider">
+                        </div>
+                        <div class="slider-label">Sustain</div>
+                    </div>
+                    <div class="slider-block">
+                        <div class="slider-component">
+                            <input type="text" id="release-slider" class="rotary-slider">
+                        </div>
+                        <div class="slider-label">Release</div>
+                    </div>
+                    <div class="container-label">Amplitude Envelope</div>
+                </div>
+                <div id="patch-bank-controller" class="widget-container">
+                    <div class="patch selected" id="fm-synth-patch"></div>
+                    <div class="patch" id="arpigiator-patch"></div>
+                    <div class="patch" id="3-patch"></div>
+                    <div class="patch" id="4-patch"></div>
+                    <div class="patch" id="5-patch"></div>
+                    <div class="container-label">Patch Bank</div>
+                </div>
+            </div>
+            <div id="sub-controller-2">
+                <div id="patch-attribute-controller" class="widget-container">
+                    <div id="fm-synth-attribute-controller" class="patch-specific-widget-container">
+                        <div class="slider-block">
+                            <div class="slider-component">
+                                <input type="text" id="mod-index-slider" class="rotary-slider">
+                            </div>
+                            <div class="slider-label">Index</div>
+                        </div>
+                        <div class="slider-block">
+                            <div class="slider-component">
+                                <input type="text" id="mod-ratio-slider" class="rotary-slider">
+                            </div>
+                            <div class="slider-label">Ratio</div>
+                        </div>
+                        <div class="slider-block">
+                            <div class="slider-component">
+                                <input type="text" id="mod-duration-slider" class="rotary-slider">
+                            </div>
+                            <div class="slider-label">Duration</div>
+                        </div>
+                        <div class="container-label">FM Synth</div>
+                    </div>
+                </div>
+                <div id="time-effects-controller" class="widget-container">
+                    <div class="slider-block">
+                        <div class="slider-component">
+                            <input type="text" id="delay-time-slider" class="rotary-slider">
+                        </div>
+                        <div class="slider-label">Time</div>
+                    </div>
+                    <div class="slider-block">
+                        <div class="slider-component">
+                            <input type="text" id="delay-feedback-slider" class="rotary-slider">
+                        </div>
+                        <div class="slider-label">Feedbk</div>
+                    </div>
+                    <div class="slider-block">
+                        <div class="slider-component">
+                            <input type="text" id="delay-mix-slider" class="rotary-slider">
+                        </div>
+                        <div class="slider-label">Delay</div>
+                    </div>
+                    <div class="slider-block">
+                        <div class="slider-component">
+                            <input type="text" id="reverb-mix-slider" class="rotary-slider">
+                        </div>
+                        <div class="slider-label">Reverb</div>
+                    </div>
+                    <div class="container-label">Time Space</div>
+                </div>
+            </div>
+        </div>
+        <div id="modulation-controller" class="widget-container">
+            Hello
+            <div id="volume-modulation"></div>
+            <div id="pitch-modulation"></div>
+            <div id="pan-modulation"></div>
+        </div>
+    </div>
+    <footer id="info-container">
+        <div id="misc-info">
+            <div id="patch-info">
+                <span><b>Patch: </b></span>
+                <span id="patch-info-id">FM Synth</span>
+            </div>
+            <div id="octave-info">
+                <span><b>Octave: </b></span>
+                <span id="octave-info-id">3</span>
+            </div>
+        </div>
+        <div id="note-info">
+            <div id="note-octave-info">
+                <span class="note">C</span>
+                <span class="note">C<sub>#</sub></span>
+                <span class="note">D</span>
+                <span class="note">D<sub>#</sub></span>
+                <span class="note">E</span>
+                <span class="note">F</span>
+                <span class="note">F<sub>#</sub></span>
+                <span class="note">G</span>
+                <span class="note">G<sub>#</sub></span>
+                <span class="note">A</span>
+                <span class="note">A<sub>#</sub></span>
+                <span class="note">B</span>
+            </div>
+            <div id="note-full-info" class="hidden">
+                <span class="note">C1</span>
+                <span class="note">C2</span>
+                <span class="note">C3</span>
+                <span class="note">C4</span>
+                <span class="note">C5</span>
+                <span class="note">C6</span>
+                <span class="note">C7</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/jquery.knob.js"></script>
+    <script src="js/vendor/tone.js"></script>
+    <script src="js/vendor/p5/p5.js"></script>
+    <script src="js/vendor/p5/addons/p5.dom.js"></script>
+    <script src="js/utility/utility.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/entity/visual-mover-entities.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/graphic-render.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/dom-event.js"></script>
+</body>
+</html>
