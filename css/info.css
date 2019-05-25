@@ -1,0 +1,46 @@
+#info-container {
+    color: aliceblue;
+    opacity: 0.5;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    transition: 0.3s;
+}
+
+#info-container #misc-info {
+    padding: 0 4vmin 0 3vmin;
+}
+
+#patch-info, #octave-info {
+    font-size: 3vw;
+    margin-top: 3vmin;
+}
+
+#note-info > div {
+    font-size: 4vw;
+    margin-top: 4vmin;
+    margin-bottom: 5vmin;
+    width: 100%;
+    display: flex;
+    transition: 0.3s;
+}
+
+#note-info #note-octave-info > span {
+    width: calc(1/12 * 100%);
+    text-align: center;
+}
+
+#note-info #note-full-info > span {
+    width: calc(1/7 * 100%);
+    text-align: center;
+}
+
+.hidden {
+    opacity: 0 !important;
+    display: none !important;
+}
+
+.invisible {
+    opacity: 0 !important;
+    visibility: hidden !important;
+}

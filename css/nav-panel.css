@@ -1,0 +1,148 @@
+header {
+    margin: 0 2vmin 0 2vmin;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header > .custom-responsive {
+    color: aliceblue;
+    font-size: 6vmin;
+    opacity: 0.5;
+    transition: opacity ease-in 0.5s;
+}
+header > .custom-responsive:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+#navbar-side-panel {
+    height: 100%;
+    width: 340px;
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: -350px;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+    box-shadow: 2px 2px 5px black;
+}
+
+#navbar-side-panel-content-container {
+    margin-bottom: 150px;
+}
+
+#navbar-side-panel hr {
+    border-color: #818181;
+    width: 80%;
+}
+
+#navbar-side-panel .list-item {
+    padding: 8px 34px;
+    text-decoration: none;
+    font-size: 1.2em;
+    color: #818181;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+#navbar-side-panel .list-item .list-item-label:hover {
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+#navbar-side-panel #close-button {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    cursor: pointer;
+}
+
+#navbar-side-panel .number-picker {
+    display: flex;
+    font-size: 1.2em;
+    align-items: center;
+}
+
+#navbar-side-panel .number-picker .num-box {
+    background: white;
+    border-radius: 0.3em;
+    text-align: center;
+    margin: 0 0.8em;
+    padding: 0.1em 1em;
+    font-size: 0.8em;
+}
+
+#navbar-side-panel .number-picker .plus, #navbar-side-panel .number-picker .minus {
+    cursor: pointer;
+}
+
+#navbar-side-panel .number-picker .plus:hover , #navbar-side-panel .number-picker .minus:hover {
+    color: #f1f1f1;
+}
+
+
+
+
+/* Toggle button styles */
+.tgl {
+    display: none;
+}
+.tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl + .tgl-btn {
+    box-sizing: border-box;
+}
+.tgl::-moz-selection, .tgl:after::-moz-selection, .tgl:before::-moz-selection, .tgl *::-moz-selection, .tgl *:after::-moz-selection, .tgl *:before::-moz-selection, .tgl + .tgl-btn::-moz-selection {
+    background: none;
+}
+.tgl::selection, .tgl:after::selection, .tgl:before::selection, .tgl *::selection, .tgl *:after::selection, .tgl *:before::selection, .tgl + .tgl-btn::selection {
+    background: none;
+}
+.tgl + .tgl-btn {
+    outline: 0;
+    display: block;
+    width: 2em;
+    height: 1em;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.tgl + .tgl-btn:after, .tgl + .tgl-btn:before {
+    position: relative;
+    display: block;
+    content: "";
+    width: 50%;
+    height: 100%;
+}
+.tgl + .tgl-btn:after {
+    left: 0;
+}
+.tgl + .tgl-btn:before {
+    display: none;
+}
+.tgl:checked + .tgl-btn:after {
+    left: 50%;
+}
+
+.tgl-light + .tgl-btn {
+    background: #929292;
+    border-radius: 0.5em;
+    padding: 2px;
+    transition: all .4s ease;
+}
+.tgl-light + .tgl-btn:after {
+    border-radius: 50%;
+    background: #ffffff;
+    transition: all .2s ease;
+}
+.tgl-light:checked + .tgl-btn {
+    background: #6caf74;
+}

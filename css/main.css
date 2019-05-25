@@ -1,0 +1,191 @@
+header {
+    height: 8vh;
+}
+
+body {
+    overflow: hidden;
+    font-family: 'Lato', sans-serif;
+    user-select: none;
+    position: relative;
+    height: 100vh;
+    /*
+    Consider:
+    Ultraviolet
+    Orca
+    */
+}
+
+#gradient-background {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 500%;
+    height: 100%;
+    z-index: -100;
+    background: #ad5389;
+    background: -webkit-linear-gradient(to right,
+    #3c1053, #ad5389,
+    #1f4037, #99f2c8,
+    #4b79a1, #283e51);
+    background: linear-gradient(to right,
+    #3c1053, #ad5389,
+    #1f4037, #99f2c8,
+    #4b79a1, #283e51);
+    transition: ease-in-out 2s;
+}
+
+.ui-page {
+    background: transparent;
+}
+
+.rotary-slider {
+    margin: 0 0.3vw 0 0.3vw;
+}
+
+#patch-bank-controller {
+    padding: 2%;
+}
+
+#patch-bank-controller .patch {
+    background-color: white;
+    width: 20%;
+    border-radius: 15%;
+    height: 100%;
+}
+
+#patch-bank-controller .patch:nth-child(1) {
+    background-color: #FF9364;
+    border-color: #B94D1E;
+}
+#patch-bank-controller .patch:nth-child(2) {
+    background-color: #c3be79;
+    border-color: #716d40;
+}
+#patch-bank-controller .patch:nth-child(3) {
+    background-color: #8bffd8;
+    border-color: #4c997f;
+}
+#patch-bank-controller .patch:nth-child(4) {
+    background-color: #9bef9b;
+    border-color: #568e56;
+}
+#patch-bank-controller .patch:nth-child(5) {
+    background-color: #8877ef;
+    border-color: #493e8e;
+}
+
+#patch-bank-controller .patch:hover {
+    cursor: pointer;
+    box-shadow: 2px 2px 4px grey;
+    opacity: 0.5;
+}
+
+#patch-bank-controller .selected {
+    border: 4px solid;
+}
+
+@media only screen and (min-width: 900px) {
+
+    #controller-container {
+        display: flex;
+        height: 30vmin;
+        justify-content: space-around;
+    }
+
+    #visual-controller {
+        margin-right: 1vw;
+        background-color: blueviolet;
+        flex: 1;
+    }
+
+    #main-controller {
+        background-color: brown;
+        flex: 1;
+        flex-grow: 4;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    #modulation-controller {
+        margin-left: 1vw;
+        background-color: cadetblue;
+        flex: 1;
+        width: 2em;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    #sub-controller-1 {
+        flex: 1;
+        background-color: chartreuse;
+        height: 50%;
+        padding: 2vh;
+        margin-bottom: 1vh;
+
+        display: flex;
+    }
+
+    #sub-controller-2 {
+        flex: 1;
+        background-color: coral;
+        height: 50%;
+        padding: 2vh;
+        margin-top: 1vh;
+
+        display: flex;
+    }
+
+    #macro-controller {
+        flex: 1;
+        background-color: aquamarine;
+
+        display: flex;
+        align-items: center;
+    }
+
+    #envelope-controller {
+        flex: 1.4;
+        background-color: cornflowerblue;
+
+        display: flex;
+        align-items: center;
+    }
+
+    #patch-bank-controller {
+        flex: 1;
+        background-color: darkkhaki;
+    }
+
+    #patch-attribute-controller {
+        flex: 1;
+        background-color: darkolivegreen;
+        display: flex;
+    }
+
+    #fm-synth-attribute-controller {
+        display: flex;
+        align-items: center;
+    }
+
+    #time-effects-controller {
+        flex: 1;
+
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+    }
+
+    #volume-modulation {
+        flex: 1;
+    }
+
+    #pitch-modulation {
+        flex: 1;
+    }
+
+    #pan-modulation {
+        flex: 1;
+    }
+}
