@@ -7,6 +7,11 @@ let globalParameters = {
 let primeMovers = [];
 let secondaryMovers = [];
 
+let colourPaletteOpacity = 0.7;
+let colourPalettes = [
+    [`rgba(226,178,207,${colourPaletteOpacity})`, `rgba(203,129,174,${colourPaletteOpacity})`, `rgba(173,83,138,${colourPaletteOpacity})`, `rgba(111,20,75,${colourPaletteOpacity})`]
+];
+
 const sliderModels = [{
     id: "volume-slider",
     parameter: "volume",
