@@ -15,6 +15,10 @@ let secondaryMoversIntervals = [];
 let touchEventActivated;
 let availableNotes = new Map();
 
+let fftSize = 256;
+let fftAnalysisArray = [];
+let spectrumAnalysisArray = [];
+
 function setup() {
     const canvas = createCanvas(windowWidth, windowHeight);
     positionAndStyleCanvas(canvas);
@@ -26,6 +30,26 @@ function draw() {
     drawAmplitudeEnvelope();
     updatePrimeMovers();
     updateSecondaryMovers();
+    if (fftAnalysisArray.length > 1) {
+        noStroke();
+        fill(255,255,255,40)
+        let w = width / fftSize;
+        for (let i = 0; i < fftSize; i++) {
+            let index = Math.floor(map(i, 0, fftSize, 0, width));
+            rect(index, height - (map(fftAnalysisArray[i], -120, 0, 0, height)), w, height, 20);
+        }
+    }
+    if (spectrumAnalysisArray.length > 1) {
+        stroke(255);
+        beginShape();
+        fill(255, 255, 255, 80);
+        for (let i = 0; i < fftSize; i++) {
+            let index = Math.floor(map(i, 0, fftSize, 0, width));
+            vertex(index, height * 0.75 + (map(spectrumAnalysisArray[i], -1, 1, -height/4, height/4)));
+        }
+        endShape();
+
+    }
 }
 
 function windowResized() {
@@ -95,14 +119,55 @@ function initializePatch() {
     createFMSynth();
     currentPatch.gain = new Tone.Gain();
 
+    currentPatch.delay = new Tone.PingPongDelay({
+        delayTime: patchParameters.delayTime,
+        maxDelayTime: 4
+    });
+    currentPatch.delay.feedback.value = patchParameters.delayFeedback;
+    currentPatch.delay.wet.value = patchParameters.delayMix;
+    currentPatch.reverb = new Tone.Freeverb(0.96);
+    currentPatch.reverb.wet.value = patchParameters.reverbMix;
+    let finalGainNode = new Tone.Gain();
+    currentPatch.fftAnalyzer = new Tone.Analyser({
+        "size": fftSize,
+        "type": "fft",
+        "smoothing": 0.9
+    });
+    currentPatch.spectrumAnalyzer = new Tone.Analyser({
+        "size": fftSize,
+        "type": "waveform",
+        "smoothing": 3
+    });
+
     //Connections
     currentPatch.synth.connect(currentPatch.gain);
-    currentPatch.gain.connect(Tone.Master);
+    currentPatch.gain.connect(finalGainNode);
+
+    currentPatch.gain.send("delay-bus", 0);
+    currentPatch.gain.send("reverb-bus", 0);
+    currentPatch.delay.receive("delay-bus");
+    currentPatch.reverb.receive("reverb-bus");
+
+    currentPatch.delay.connect(finalGainNode);
+    currentPatch.reverb.connect(finalGainNode);
+
+    finalGainNode.fan(Tone.Master);
+    finalGainNode.fan(currentPatch.fftAnalyzer);
+    finalGainNode.fan(currentPatch.spectrumAnalyzer);
+
+    setInterval(function() {
+        fftAnalysisArray = currentPatch.fftAnalyzer.getValue();
+        spectrumAnalysisArray = currentPatch.spectrumAnalyzer.getValue();
+    }, 60);
 }
 
 function reconfigurePatch() {
     currentPatch.synth.voices.forEach(synth => configureFMSynthParameters(synth));
     currentPatch.gain.value = patchParameters.volume;
+    currentPatch.delay.delayTime.value = patchParameters.delayTime;
+    currentPatch.delay.feedback.value = patchParameters.delayFeedback;
+    currentPatch.delay.wet.value = patchParameters.delayMix;
+    currentPatch.reverb.wet.value = patchParameters.reverbMix;
 }
 
 function createFMSynth() {

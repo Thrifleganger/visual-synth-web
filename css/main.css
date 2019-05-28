@@ -8,6 +8,7 @@ body {
     user-select: none;
     position: relative;
     height: 100vh;
+    margin: 0;
     /*
     Consider:
     Ultraviolet
