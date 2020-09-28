@@ -69,7 +69,7 @@ function sliderChanged(value, sliderThatChanged) {
     });
     sliders.filter(instance => instance.container === "envelope-controller").forEach(instance => {
         if (sliderThatChanged.$.attr('id') === instance.slider.attr('id')) {
-            patchParameters["drawEnvelope"] = true;
+            globalParameters["drawEnvelope"] = true;
         }
     });
 }
@@ -77,7 +77,7 @@ function sliderChanged(value, sliderThatChanged) {
 function sliderReleased(value, sliderThatStopped) {
     sliders.filter(instance => instance.container === "envelope-controller").forEach(instance => {
         if (sliderThatStopped.$.attr('id') === instance.slider.attr('id')) {
-            patchParameters["drawEnvelope"] = false;
+            globalParameters["drawEnvelope"] = false;
         }
     });
 }
@@ -92,5 +92,11 @@ function performRelativePositionForSliderInput(slider) {
 
 function heightOfSliderContainer(slider) {
     return Number.parseInt(slider.parents('.slider-component').css('height'));
+}
+
+function getArpeggiatorSemitones() {
+    return $('.arpeggiator-button-container').children()
+        .filter(function() { return this.classList.contains("arpeggiator-button-active"); })
+        .map(function() { return Number.parseInt(this.innerHTML); }).toArray();
 }
 

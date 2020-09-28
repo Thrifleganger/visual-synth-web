@@ -8,6 +8,7 @@ header > .custom-responsive {
     color: aliceblue;
     font-size: 6vmin;
     opacity: 0.5;
+    text-shadow: 2px 4px 7px black;
     transition: opacity ease-in 0.5s;
 }
 header > .custom-responsive:hover {

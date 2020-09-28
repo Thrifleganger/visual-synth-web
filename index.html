@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/nav-panel.css">
     <link rel="stylesheet" href="css/info.css">
+    <link rel="stylesheet" href="css/controller.css">
     <link rel="stylesheet" href="css/mobile-controller.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
@@ -146,6 +147,11 @@
                     <div class="container-label">Patch Bank</div>
                 </div>
             </div>
+            <span id="sub-controller-1-dot-scroller" class="dot-navigate-container">
+                <div class="dot-navigate dot-selected"></div>
+                <div class="dot-navigate"></div>
+                <div class="dot-navigate"></div>
+            </span>
             <div id="sub-controller-2">
                 <div id="patch-attribute-controller" class="widget-container">
                     <div id="fm-synth-attribute-controller" class="patch-specific-widget-container">
@@ -169,6 +175,50 @@
                         </div>
                         <div class="container-label">FM Synth</div>
                     </div>
+
+                    <div id="arpeggiator-attribute-controller" class="patch-specific-widget-container hidden">
+                        <div class="slider-block">
+                            <div class="slider-component">
+                                <input type="text" id="arpeggiator-speed-slider" class="rotary-slider">
+                            </div>
+                            <div class="slider-label">Speed</div>
+                        </div>
+                        <div class="slider-block">
+                            <div class="slider-component">
+                                <input type="text" id="arpeggiator-octave-slider" class="rotary-slider">
+                            </div>
+                            <div class="slider-label">Octaves</div>
+                        </div>
+                        <div class="arpeggiator-button-container">
+                            <div class="arpeggiator-button arpeggiator-button-active">1</div>
+                            <div class="arpeggiator-button">2</div>
+                            <div class="arpeggiator-button arpeggiator-button-active">3</div>
+                            <div class="arpeggiator-button">4</div>
+                            <div class="arpeggiator-button arpeggiator-button-active">5</div>
+                            <div class="arpeggiator-button">6</div>
+                            <div class="arpeggiator-button">7</div>
+                            <div class="arpeggiator-button arpeggiator-button-active">8</div>
+                            <div class="arpeggiator-button">9</div>
+                            <div class="arpeggiator-button">10</div>
+                            <div class="arpeggiator-button">11</div>
+                            <div class="arpeggiator-button">12</div>
+                            <div class="arpeggiator-button-container-text">Partials</div>
+                        </div>
+                        <div class="container-label">Arpeggiator</div>
+                    </div>
+
+                    <div id="sampler-attribute-controller" class="patch-specific-widget-container">
+                        <div class="slider-block">
+                            <div class="slider-component">
+                                <input type="text" id="sampler-pitch-value" class="rotary-slider">
+                            </div>
+                            <div class="slider-label">Reference</div>
+                        </div>
+                        <div class="file-input-box">
+                            <input type="file" accept="audio/*" id="sampler-file-selector">
+                        </div>
+                        <div class="container-label">Sampler</div>
+                    </div>
                 </div>
                 <div id="time-effects-controller" class="widget-container">
                     <div class="slider-block">
@@ -181,7 +231,7 @@
                         <div class="slider-component">
                             <input type="text" id="delay-feedback-slider" class="rotary-slider">
                         </div>
-                        <div class="slider-label">Feedbk</div>
+                        <div class="slider-label">Feedback</div>
                     </div>
                     <div class="slider-block">
                         <div class="slider-component">
@@ -198,12 +248,10 @@
                     <div class="container-label">Time Space</div>
                 </div>
             </div>
-        </div>
-        <div id="modulation-controller" class="widget-container">
-            Modulation
-            <div id="volume-modulation"></div>
-            <div id="pitch-modulation"></div>
-            <div id="pan-modulation"></div>
+            <span id="sub-controller-2-dot-scroller" class="dot-navigate-container">
+                <div class="dot-navigate dot-selected"></div>
+                <div class="dot-navigate"></div>
+            </span>
         </div>
     </div>
     <footer id="info-container">
@@ -249,12 +297,15 @@
     <script src="js/vendor/tone.js"></script>
     <script src="js/vendor/p5/p5.js"></script>
     <script src="js/vendor/p5/addons/p5.dom.js"></script>
-    <script src="js/vendor/p5/addons/p5.sound.js"></script>
     <script src="js/utility/utility.js"></script>
     <script src="js/common.js"></script>
     <script src="js/entity/visual-mover-entities.js"></script>
     <script src="js/controller.js"></script>
     <script src="js/graphic-render.js"></script>
+    <script src="js/synths/fm-synth.js"></script>
+    <script src="js/synths/arpeggiator.js"></script>
+    <script src="js/synths/sampler.js"></script>
+    <script src="js/audio.js"></script>
     <script src="js/main.js"></script>
     <script src="js/dom-event.js"></script>
 </body>

@@ -2,10 +2,11 @@ let patchParameters = {};
 let globalParameters = {
     "speed": 4,
     "color": $('#patch-bank-controller .selected').css("background-color"),
-    "currentOctave": 3
+    "currentOctave": 3,
+    "currentPatch": 0,
+    "displayAnimation": true,
+    "displayWaveform": true
 };
-let primeMovers = [];
-let secondaryMovers = [];
 
 let colourPaletteOpacity = 0.7;
 let colourPalettes = [
@@ -99,15 +100,36 @@ const sliderModels = [{
 }, {
     id: "delay-mix-slider",
     parameter: "delayMix",
-    defaultValue: 0.3,
+    defaultValue: 0.0,
     minValue: 0,
     maxValue: 1,
     step: 0.01
 }, {
     id: "reverb-mix-slider",
     parameter: "reverbMix",
-    defaultValue: 0.3,
+    defaultValue: 0.0,
     minValue: 0,
     maxValue: 1,
     step: 0.01
+}, {
+    id: "arpeggiator-speed-slider",
+    parameter: "arpeggiatorSpeed",
+    defaultValue: 1,
+    minValue: 0.5,
+    maxValue: 2,
+    step: 0.01
+}, {
+    id: "arpeggiator-octave-slider",
+    parameter: "arpeggiatorOctaves",
+    defaultValue: 2,
+    minValue: 1,
+    maxValue: 3,
+    step: 1
+}, {
+    id: "sampler-pitch-value",
+    parameter: "samplerPitchNote",
+    defaultValue: 60,
+    minValue: 1,
+    maxValue: 127,
+    step: 1
 }];
